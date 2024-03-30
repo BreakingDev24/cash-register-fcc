@@ -67,7 +67,25 @@ function getChange(price, input){
             change = Number((change - currencyUnitNumber).toFixed(2))
         }
     }
+
+   
+    takeMoneyFromRegister()
 }
+
+function takeMoneyFromRegister(){
+    for(let i = 0; i < cid.length; i++){
+        if(changeUnit.hasOwnProperty(cid[i][0])){
+            cid[i][1] = Number((cid[i][1] - changeUnit[cid[i][0]]).toFixed(2))
+        }
+    }
+}
+
+//TO DO
+//aggiungi somma change unit 
+//controlla se la somma è minore del change
+//commit takeMoneyFromRegister
+//aggiungi render
 
 getChange(3, '5.54')
 console.log(changeUnit)
+console.log(cid)
