@@ -26,6 +26,18 @@ let changeUnit = [];
 //get change
 
 function getChange(price, input){
+    const currencyUnit=[
+        ['PENNY', 0.01],
+        ['NICKEL', 0.05],
+        ['DIME', 0.1],
+        ['QUARTER', 0.25],
+        ['DOLLAR', 1],
+        ['FIVE', 5],
+        ['TEN', 10],
+        ['TWENTY', 20],
+        ['HUNDRED', 100],
+    ]
+
     if(input < price){
         alert('Customer does not have enough money to purchase the item')
         return
@@ -33,6 +45,12 @@ function getChange(price, input){
     if(input === price){
         alert('No change due - customer paid with exact cash')
         return
-    }
+    };
+
+    changeUnit = []
+
+    let change = Number((input - price).toFixed(2))
 
 }
+
+getChange(3, '5.54')
