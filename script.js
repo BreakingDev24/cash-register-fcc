@@ -19,3 +19,20 @@ let cid = [
   ["TWENTY", 60],
   ["ONE HUNDRED", 100]
 ];
+
+
+let changeUnit = [];
+
+//get change
+
+function getChange(price, input){
+    if(input < price){
+        alert('Customer does not have enough money to purchase the item')
+        return
+    }
+    if(input === price){
+        alert('No change due - customer paid with exact cash')
+        return
+    }
+
+}
