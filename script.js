@@ -77,6 +77,7 @@ function getChange(price, input){
 
    
     takeMoneyFromRegister()
+    updateCid(cid)
 }
 
 function takeMoneyFromRegister(){
@@ -85,6 +86,45 @@ function takeMoneyFromRegister(){
             cid[i][1] = Number((cid[i][1] - changeUnit[cid[i][0]]).toFixed(2))
         }
     }
+}
+
+function updateCid(arr){
+    cidMoney.innerHTML = ''
+    let name = ''
+    arr.forEach((item)=> {
+        switch(item[0]){
+            case 'PENNY' : 
+                name = 'Pennies';
+                break;
+            case 'NICKEL' : 
+                name = 'Nickels';
+                break;
+            case 'DIME' : 
+                name = 'Dimes';
+                break;
+            case 'QUARTER' : 
+                name = 'Quarters';
+                break;
+            case 'ONE' : 
+                name = 'Ones';
+                break;
+            case 'FIVE' : 
+                name = 'Fives';
+                break;
+            case 'TEN' : 
+                name = 'Tens';
+                break;
+            case 'TWENTY' : 
+                name = 'Twenties';
+                break;
+            case 'ONE HUNDRED' : 
+                name = 'Hundreds';
+                break;
+        }
+        
+        cidMoney.innerHTML += `
+        <p>${name}: &#36;${item[1]}`
+    })
 }
 
 
