@@ -71,7 +71,7 @@ function getChange(price, input){
     const changeUnitSum = Object.values(changeUnit).reduce((a,b)=> a + b, 0)
 
     if(changeUnitSum < change){
-        alert('insufficient funds')
+        changeDueContainer.innerHTML = `<p>Status: INSUFFICIENT_FUNDS</p>`
         return
     }
 
