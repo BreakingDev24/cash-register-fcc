@@ -51,6 +51,13 @@ function getChange(price, input){
 
     let change = Number((input - price).toFixed(2))
 
+    for(let i = currencyUnit.length - 1; i >= 0; i--){
+        while(change >= currencyUnit[i][1]){
+            changeUnit.push(currencyUnit[i][1])
+            change = Number((change - currencyUnit[i][1]).toFixed(2))
+        }
+    }
 }
 
 getChange(3, '5.54')
+console.log(changeUnit)
