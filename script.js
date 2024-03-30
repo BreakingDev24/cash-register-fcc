@@ -137,13 +137,10 @@ function renderChangeUnit(obj){
 }
 
 
+purchaseBtn.addEventListener('click', ()=>{
+getChange(price, cashInput.value)
 
-//TO DO
-//aggiungi somma change unit 
-//controlla se la somma è minore del change
-//commit takeMoneyFromRegister
-//aggiungi render
+})
 
-getChange(3, '5.54')
 console.log(changeUnit)
 console.log(cid)
