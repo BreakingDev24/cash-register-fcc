@@ -51,6 +51,7 @@ function getChange(price, input){
 
     let change = Number((input - price).toFixed(2))
 
+    let changeCopy = change
     for(let i = currencyUnit.length - 1; i >= 0; i--){
 
         let cidNumber = cid[i][1];
@@ -58,14 +59,20 @@ function getChange(price, input){
         let currencyUnitName = currencyUnit[i][0]
 
         if(cidNumber < currencyUnitNumber) continue
-        while(change >= currencyUnitNumber){
+        while(changeCopy >= currencyUnitNumber){
             if(!changeUnit[currencyUnitName]){
                 changeUnit[currencyUnitName] = 0
             }
             changeUnit[currencyUnit[i][0]] += currencyUnitNumber
             // changeUnit.push(currencyUnitValue)
-            change = Number((change - currencyUnitNumber).toFixed(2))
+            changeCopy = Number((changeCopy - currencyUnitNumber).toFixed(2))
         }
+    }
+    const changeUnitSum = Object.values(changeUnit).reduce((a,b)=> a + b, 0)
+
+    if(changeUnitSum < change){
+        alert('insufficient funds')
+        return
     }
 
    
@@ -79,6 +86,8 @@ function takeMoneyFromRegister(){
         }
     }
 }
+
+
 
 //TO DO
 //aggiungi somma change unit 
