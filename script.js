@@ -75,7 +75,7 @@ function getChange(price, input){
         return
     }
 
-   
+   renderChangeUnit(changeUnit)
     takeMoneyFromRegister()
     updateCid(cid)
 }
@@ -125,6 +125,15 @@ function updateCid(arr){
         cidMoney.innerHTML += `
         <p>${name}: &#36;${item[1]}`
     })
+}
+
+function renderChangeUnit(obj){
+    changeDueContainer.innerHTML = '';
+    changeDueContainer.innerHTML = `<h3>Status: OPEN</h3>`
+    for(let key in obj){
+        changeDueContainer.innerHTML += `
+        <p>${key}: &#36;${obj[key]}</p>`
+    }
 }
 
 
