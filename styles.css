@@ -3,3 +3,32 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+#main-container{
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    gap: 30px;
+    background-color: grey
+}
+
+.input-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 250px;
+}
+
+#cash{
+    height: 30px;
+    padding: 5px;
+}
+
+#purchase-btn{
+    padding: 5px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
