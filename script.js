@@ -3,7 +3,7 @@ const changeDueContainer = document.getElementById('change-due');
 const cashInput = document.getElementById('cash');
 const purchaseBtn = document.getElementById('purchase-btn');
 const priceScreen = document.getElementById('price-screen');
-const chidMoney = document.getElementById('cid-money');
+const cidMoney = document.getElementById('cid-money');
 
 //start value
 
@@ -21,7 +21,7 @@ let cid = [
 ];
 
 
-let changeUnit = [];
+let changeUnit = {};
 
 //get change
 
@@ -47,19 +47,23 @@ function getChange(price, input){
         return
     };
 
-    changeUnit = []
+    changeUnit = {}
 
     let change = Number((input - price).toFixed(2))
 
     for(let i = currencyUnit.length - 1; i >= 0; i--){
-        
+
         let cidNumber = cid[i][1];
         let currencyUnitNumber = currencyUnit[i][1];
-        let currencyUnitValue = currencyUnit[i];
+        let currencyUnitName = currencyUnit[i][0]
 
         if(cidNumber < currencyUnitNumber) continue
         while(change >= currencyUnitNumber){
-            changeUnit.push(currencyUnitValue)
+            if(!changeUnit[currencyUnitName]){
+                changeUnit[currencyUnitName] = 0
+            }
+            changeUnit[currencyUnit[i][0]] += currencyUnitNumber
+            // changeUnit.push(currencyUnitValue)
             change = Number((change - currencyUnitNumber).toFixed(2))
         }
     }
