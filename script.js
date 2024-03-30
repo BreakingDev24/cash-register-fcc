@@ -52,6 +52,7 @@ function getChange(price, input){
     let change = Number((input - price).toFixed(2))
 
     for(let i = currencyUnit.length - 1; i >= 0; i--){
+        if(cid[i][1] < currencyUnit[i][1]) continue
         while(change >= currencyUnit[i][1]){
             changeUnit.push(currencyUnit[i][1])
             change = Number((change - currencyUnit[i][1]).toFixed(2))
