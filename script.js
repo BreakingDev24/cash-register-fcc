@@ -31,11 +31,11 @@ function getChange(price, input){
         ['NICKEL', 0.05],
         ['DIME', 0.1],
         ['QUARTER', 0.25],
-        ['DOLLAR', 1],
+        ['ONE', 1],
         ['FIVE', 5],
         ['TEN', 10],
         ['TWENTY', 20],
-        ['HUNDRED', 100],
+        ['ONE HUNDRED', 100],
     ]
 
     if(input < price){
@@ -52,41 +52,43 @@ function getChange(price, input){
     let change = Number((input - price).toFixed(2))
 
     let changeCopy = change
-    for(let i = currencyUnit.length - 1; i >= 0; i--){
-
-        let cidNumber = cid[i][1];
+    for(let i = currencyUnit.length -1; i >= 0; i--){
         let currencyUnitNumber = currencyUnit[i][1];
         let currencyUnitName = currencyUnit[i][0]
+        let cidNumber = cid[i][1];
 
-        if(cidNumber < currencyUnitNumber) continue
-        while(changeCopy >= currencyUnitNumber){
+        // console.log(cidNumber)
+        
+        console.log(changeCopy >= currencyUnitNumber, changeCopy, currencyUnitNumber)
+        while(changeCopy >= currencyUnitNumber && cidNumber >= currencyUnitNumber){
+
             if(!changeUnit[currencyUnitName]){
                 changeUnit[currencyUnitName] = 0
             }
             changeUnit[currencyUnit[i][0]] += currencyUnitNumber
-            // changeUnit.push(currencyUnitValue)
-            changeCopy = Number((changeCopy - currencyUnitNumber).toFixed(2))
-        }
-    }
-    const changeUnitSum = Object.values(changeUnit).reduce((a,b)=> a + b, 0)
 
+            changeCopy = Number((changeCopy - currencyUnitNumber).toFixed(2))
+            cidNumber = Number((cidNumber - currencyUnitNumber).toFixed(2))
+            
+        }
+        cid[i][1] = cidNumber
+    }
+    console.log(cid);
+    
+    const changeUnitSum = Object.values(changeUnit).reduce((a,b)=> a + b, 0).toFixed(2)
+    console.log(changeUnitSum);
+    console.log(change);
     if(changeUnitSum < change){
         changeDueContainer.innerHTML = `<p>Status: INSUFFICIENT_FUNDS</p>`
         return
     }
-
-   renderChangeUnit(changeUnit)
-    takeMoneyFromRegister()
+    // takeMoneyFromRegister()
+    console.log(changeUnit)
+    
     updateCid(cid)
+    renderChangeUnit(changeUnit)
 }
 
-function takeMoneyFromRegister(){
-    for(let i = 0; i < cid.length; i++){
-        if(changeUnit.hasOwnProperty(cid[i][0])){
-            cid[i][1] = Number((cid[i][1] - changeUnit[cid[i][0]]).toFixed(2))
-        }
-    }
-}
 
 function updateCid(arr){
     cidMoney.innerHTML = ''
@@ -142,5 +144,3 @@ getChange(price, cashInput.value)
 
 })
 
-console.log(changeUnit)
-console.log(cid)
