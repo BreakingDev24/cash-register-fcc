@@ -42,8 +42,8 @@ function getChange(price, input){
         alert('Customer does not have enough money to purchase the item')
         return
     }
-    if(input === price){
-        alert('No change due - customer paid with exact cash')
+    if(input == price){
+        changeDueContainer.innerHTML = `<p>No change due - customer paid with exact cash</p>`
         return
     };
 
@@ -82,11 +82,23 @@ function getChange(price, input){
         changeDueContainer.innerHTML = `<p>Status: INSUFFICIENT_FUNDS</p>`
         return
     }
-    // takeMoneyFromRegister()
     console.log(changeUnit)
+
+    const totalCid = cid.reduce((acc, currentArray) => {
+        currentArray.forEach(item => {
+            if(typeof item === 'number'){
+                acc += item
+            }
+        });
+        return acc
+    }, 0)
+
+    console.log(totalCid, 'total cid')
+
+
     
     updateCid(cid)
-    renderChangeUnit(changeUnit)
+    renderChangeUnit(changeUnit, totalCid)
 }
 
 
@@ -129,9 +141,9 @@ function updateCid(arr){
     })
 }
 
-function renderChangeUnit(obj){
+function renderChangeUnit(obj, drawer){
     changeDueContainer.innerHTML = '';
-    changeDueContainer.innerHTML = `<h3>Status: OPEN</h3>`
+    changeDueContainer.innerHTML = `<h3>${drawer === 0 ? 'Status: CLOSED' : 'Status: OPEN<'}/h3>`
     for(let key in obj){
         changeDueContainer.innerHTML += `
         <p>${key}: &#36;${obj[key]}</p>`
