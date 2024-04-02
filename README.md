@@ -1,7 +1,7 @@
 # cash-register-fcc
 ## Description
 
-The Advanced Cash Register is a web app developed using HTML, CSS, and JavaScript, designed to calculate the change due to the customer based on the item's price, the amount provided by the customer, and the cash drawer's contents. As part of the JavaScript certification path at freeCodeCamp, this project also handles various payment process scenarios, providing specific messages to the user.
+The Cash Register FCC is a web app developed using HTML, CSS, and JavaScript, designed to calculate the change due to the customer based on the item's price, the amount provided by the customer, and the cash drawer's contents. As part of the JavaScript certification path at freeCodeCamp, this project also handles various payment process scenarios, providing specific messages to the user.
 
 ## Features
 
